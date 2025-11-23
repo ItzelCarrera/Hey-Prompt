@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Encuesta: Redacción de Prompts - HeyPrompt</title>
+  <link rel="stylesheet" href="css/Estilos.css">
+</head>
+<body>
+
+  <main class="wrap" role="main">
+    <h1>Encuesta de Evaluación – Redacción de Prompts en IA Generativa</h1>
+    
+    <div class="lead">
+      <p><strong>Objetivo:</strong> Evaluar mejora en redacción de prompts tras el uso de HeyPrompt.</p>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Escala de evaluación: 0% (muy deficiente) – 100% (excelente).</p>
+    </div>
+
+    <form id="surveyForm" autocomplete="off">
+      <div class="full">
+        <label for="studentId">Número de lista (Anónimo)</label>
+        <input id="studentId" name="studentId" type="text" placeholder="Ej. A001" required>
+        <small style="color:#666; font-size:0.85rem;">Ingresa tu código asignado.</small>
+      </div>
+
+      <div class="full">
+        <label class="question-label">1. Redacta un prompt para HeyPrompt sobre metodologías ágiles:</label>
+        <p class="desc-text">Debe pedir explicación detallada, fases, roles y herramientas para un equipo novato.</p>
+        <textarea name="q1_agile" rows="4" placeholder="Escribe tu prompt aquí..." required></textarea>
+      </div>
+
+      <div class="full">
+        <label class="question-label">2. En gestión de proyectos, ¿qué es más importante incluir para una respuesta útil?</label>
+        <div class="options-group">
+          <label class="radio-opt"><input type="radio" name="q2" value="a" required> a) Preguntar de manera general, sin detalles</label>
+          <label class="radio-opt"><input type="radio" name="q2" value="b"> b) Incluir contexto, objetivos y resultados esperados</label>
+          <label class="radio-opt"><input type="radio" name="q2" value="c"> c) Usar solo términos técnicos complicados</label>
+          <label class="radio-opt"><input type="radio" name="q2" value="d"> d) Solo una palabra clave</label>
+        </div>
+      </div>
+
+      <div class="full">
+        <label class="question-label">3. Redacta un prompt para identificar riesgos en proyectos de software y mitigarlos:</label>
+        <textarea name="q3_risks" rows="4" placeholder="Escribe tu prompt aquí..." required></textarea>
+      </div>
+
+      <div class="full">
+        <label class="question-label">4. Para que HeyPrompt entregue un plan de proyecto completo, tu prompt debería:</label>
+        <div class="options-group">
+          <label class="radio-opt"><input type="radio" name="q4" value="a" required> a) Ser muy corto y general</label>
+          <label class="radio-opt"><input type="radio" name="q4" value="b"> b) Incluir pasos específicos, roles y fechas</label>
+          <label class="radio-opt"><input type="radio" name="q4" value="c"> c) Preguntar varias cosas a la vez sin orden</label>
+          <label class="radio-opt"><input type="radio" name="q4" value="d"> d) Evitar cualquier detalle para no confundirlo</label>
+        </div>
+      </div>
+
+      <div class="full">
+        <label class="question-label">5. Elementos más importantes a incluir (Selecciona máx. 3):</label>
+        <div class="options-group" id="checkboxGroup">
+          <label class="check-opt"><input type="checkbox" name="q5" value="objetivo"> Objetivo o propósito claro del prompt</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="contexto"> Información o contexto suficiente</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="tecnicos"> Uso de términos técnicos</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="formato"> Instrucciones específicas sobre el formato</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="general"> Preguntar sobre el tema en general</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="ejemplos"> Ejemplos</label>
+          <label class="check-opt"><input type="checkbox" name="q5" value="estudiante"> Que eres un estudiante</label>
+        </div>
+      </div>
+
+      <div class="full" style="margin-top:20px; text-align:center;">
+        <button type="submit" style="width:100%; max-width:300px;">Enviar Evaluación</button>
+      </div>
+    </form>
+
+    <div id="thanks" class="hidden card" style="margin-top:18px; border: 1px solid #eee; background:#e8f5e9; text-align:center;">
+      <h3 style="color:#2e7d32;">¡Evaluación Enviada!</h3>
+      <p>Tus respuestas han sido registradas exitosamente.</p>
+    </div>
+
+  </main>
+
+  <script>
+    const form = document.getElementById('surveyForm');
+    const thanks = document.getElementById('thanks');
+    const checkboxes = document.querySelectorAll('input[name="q5"]');
+
+    /* ===== Lógica para limitar a 3 checkboxes ===== */
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const checkedCount = document.querySelectorAll('input[name="q5"]:checked').length;
+        if (checkedCount > 3) {
+          this.checked = false;
+          alert("Solo puedes seleccionar un máximo de 3 opciones.");
+        }
+      });
+    });
+
+    /* ===== Envío del formulario ===== */
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      
+      // Validación extra para checkboxes (al menos 1 seleccionado)
+      const checkedCount = document.querySelectorAll('input[name="q5"]:checked').length;
+      if(checkedCount === 0){
+        alert("Por favor selecciona al menos un elemento en la pregunta 5.");
+        return;
+      }
+
+      // Recolección de datos
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Capturar los checkboxes múltiples manualmente
+      const q5Values = [];
+      document.querySelectorAll('input[name="q5"]:checked').forEach(cb => q5Values.push(cb.value));
+      data.q5 = q5Values;
+
+      console.log("Datos de la encuesta:", data);
+
+      // Simulación de envío exitoso
+      form.classList.add('hidden');
+      thanks.classList.remove('hidden');
+      
+      // AQUÍ PUEDES AGREGAR TU CÓDIGO DE FETCH/FORMSPREE SI LO NECESITAS
+      const FORMSPREE_URL = "https://formspree.io/f/xeodokzw"; 
+
+      fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          // Si se envió bien:
+          form.classList.add('hidden');     // Oculta el formulario
+          thanks.classList.remove('hidden');// Muestra el mensaje de gracias
+          form.reset();                     // Limpia los campos por si acaso
+        } else {
+          // Si Formspree dio error:
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              alert(data["errors"].map(error => error["message"]).join(", "));
+            } else {
+              alert("Hubo un error al enviar la encuesta.");
+            }
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Error de conexión. No se pudo enviar.");
+      });
+    });
+  </script>
+</body>
+</html>

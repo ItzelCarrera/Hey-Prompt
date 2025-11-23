@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en" class="tw-dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Correcto Uso de la IA</title>
+        <meta name="description" content="Utiliza una IA de Forma Correcta en la Educación" />
+        <link
+            rel="shortcut icon"
+            href="./assets/logo/logo.png"
+            type="image/x-icon"
+        />
+
+        <!-- <link rel="stylesheet" href="css/tailwind-runtime.css" /> -->
+        <link rel="stylesheet" href="css/tailwind-build.css">
+        <link rel="stylesheet" href="css/index.css" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+            integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-');
+        </script>
+
+    </head>
+    <body
+        class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-[#fcfcfc] 
+            tw-text-black dark:tw-bg-black  dark:tw-text-white">
+
+        <header
+            class="lg:tw-px-6 tw-w-full tw-fixed tw-top-4 tw-z-20 tw-flex tw-h-[60px]
+                    tw-text-gray-700 tw-bg-white dark:tw-text-gray-200 dark:tw-bg-[#17181b]
+                    tw-px-[3%] tw-rounded-md lg:tw-max-w-7xl tw-shadow-md dark:tw-shadow-gray-700
+                    lg:tw-justify-around lg:!tw-backdrop-blur-lg lg:tw-opacity-[0.99]"
+        >
+           
+            <div
+                class="collapsible-header animated-collapse max-lg:tw-shadow-md"
+                id="collapsed-header-items"
+            >
+                <nav
+                    class="tw-relative tw-flex tw-h-full max-lg:tw-h-max tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col 
+                                max-lg:tw-gap-5 lg:tw-mx-auto tw-place-items-center"
+                >
+                    <a class="header-links" href="#como-formular"> Cómo Formular un Prompt </a>
+                    <a class="header-links" href="#consejos"> Consejos </a>
+                    <a class="header-links" href="#errores"> Errores </a>
+                    <a class="header-links" href="#ejemplos"> Ejemplos </a>
+                    <a class="header-links" href="#faq"> Preguntas Frecuentes </a>
+                </nav>
+                <div
+                    class="lg:tw-mx-4 tw-flex tw-place-items-center tw-gap-[20px] tw-text-base max-md:tw-w-full 
+                            max-md:tw-flex-col max-md:tw-place-content-center"
+                >
+                    <button type="button" onclick="toggleMode()" class="header-links tw-text-gray-600 dark:tw-text-gray-300" title="toggle-theme" 
+                            id="theme-toggle"> 
+                        <i class="bi bi-sun" id="toggle-mode-icon"></i>
+                    </button>
+                    <a
+                        href="#"
+                        aria-label="Try Pixa Playground"
+                        class="btn tw-flex tw-gap-3 tw-px-3 tw-py-2 tw-transition-transform 
+                                    tw-duration-[0.3s] hover:tw-translate-x-2"
+                    >
+                        <span>Prueba tus prompts!</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <button
+                class="bi bi-list tw-absolute tw-right-3 tw-top-3 tw-z-50 tw-text-3xl tw-text-gray-500 lg:tw-hidden"
+                onclick="toggleHeader()"
+                aria-label="menu"
+                id="collapse-btn"
+            ></button>
+        </header>
+
+        <section
+            class="hero-section tw-relative tw-mt-20 tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-lg:tw-mt-[100px]"
+            id="hero-section"
+        >
+
+            <!-- video container -->
+            <div class="tw-fixed tw-bg-[#000000af] dark:tw-bg-[#80808085] tw-top-0 tw-left-1/2 tw--translate-x-1/2 tw-z-20 tw-transition-opacity
+                tw-duration-300 tw-scale-0 tw-opacity-0 tw-p-2
+                tw-w-full tw-h-full tw-flex tw-place-content-center tw-place-items-center" id="video-container-bg">
+
+                <div class="tw-max-w-[80vw] max-lg:tw-max-w-full max-lg:tw-w-full tw-scale-0 tw-transition-transform tw-duration-500 tw-p-6 tw-rounded-xl  max-lg:tw-px-2 tw-w-full tw-gap-2 tw-shadow-md 
+                            tw-h-[90vh] max-lg:tw-h-auto max-lg:tw-min-h-[400px] tw-bg-white dark:tw-bg-[#16171A] tw-max-h-full
+                            " id="video-container">
+                    <div class="tw-w-full tw-flex">
+                        <button type="button" onclick="closeVideo()" class="tw-ml-auto tw-text-xl" title="close">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </button>
+                    </div>
+                    <div class="tw-flex tw-w-full  tw-rounded-xl tw-px-[5%] max-md:tw-px-2 tw-min-h-[300px] tw-max-h-[90%] tw-h-full">
+
+                        <div class="tw-relative tw-bg-black tw-min-w-full tw-min-h-full tw-overflow-clip tw-rounded-md">
+                            <!-- add your youtube video link here -->
+                            <iframe class="tw-absolute tw-top-[50%] tw--translate-y-[50%] tw-left-[50%] tw--translate-x-[50%] tw-w-full tw-h-full" 
+                                src="https://www.youtube.com/embed/6j4fPVkA3EA?si=llcTrXPRM-MRXDZB&amp;controls=0&rel=0&showinfo=0&autoplay=1&loop=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+        
+                    </div>
+                </div>  
+            </div>
+
+            <div    
+                class="hero-bg-gradient tw-relative tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
+            >
+
+                <div class="purple-bg-grad  reveal-up tw-absolute tw-left-1/2 tw--translate-1/2 tw-top-[10%] tw-h-[120px] tw-w-[120px]"
+                ></div> 
+
+                <div
+                    class="tw-flex tw-flex-col tw-min-h-[60vh] tw-place-content-center tw-items-center"
+                >
+                    <h2
+                        class="reveal-up tw-text-center tw-text-7xl tw-font-semibold tw-uppercase tw-leading-[90px] max-lg:tw-text-4xl max-md:tw-leading-snug"
+                    >
+                        <span class=""> Guía Universitaria para el Uso Ético y Efectivo de la</span>
+                        <br />
+                        <span class="tw-font-thin tw-font-serif"> Inteligencia Artificial </span>
+                    </h2>
+                    <div
+                        class="reveal-up tw-mt-8 tw-max-w-[450px] tw-text-lg max-lg:tw-text-base tw-p-2 tw-text-center
+                         tw-text-gray-800 dark:tw-text-white max-lg:tw-max-w-full"
+                    >   Aprende formular un prompt de manera adecuada, consejos para aprender utilizando IA y 
+                        malas prácticas a evitar, así como un espacio donde podras practicar tus prompts.
+                    </div>
+
+                    <div
+                        class="reveal-up tw-mt-10 max-md:tw-flex-col tw-flex tw-place-items-center tw-gap-4"
+                    >  
+                        
+                    </div>
+                </div>
+            </section>
+
+               <!-- Como hacer tu propio Prompt-->
+                    <section id="como-formular"
+                    class="tw-relative tw-flex tw-w-full tw-min-h-[100vh] max-lg:tw-min-h-[80vh] 
+            tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-pt-[80px]"
+>
+                    <div class="tw-w-full tw-place-content-center tw-items-center 
+                                tw-flex tw-flex-col tw-max-w-[900px] tw-gap-4 tw-p-4">
+                        
+                        <div class="purple-bg-grad reveal-up tw-absolute tw-right-[20%] tw-top-[20%] tw-h-[200px] tw-w-[200px]"></div>
+                        
+                        <h2 class="reveal-up tw-text-6xl max-lg:tw-text-4xl tw-text-center tw-leading-normal tw-uppercase">
+                        <span class="tw-font-semibold">Cómo Formular un Prompt</span><br>
+                        <span class="tw-font-serif">de Forma Correcta</span>
+                        </h2>
+                        
+                        <p class="reveal-up tw-mt-8 tw-max-w-[650px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-center max-md:tw-text-sm">   
+                        Un prompt es una instrucción o mensaje que le das a una IA para obtener una respuesta.
+                        Mientras más claro, específico y estructurado sea, mejor será la calidad del resultado.
+                        </p>
+
+                        <!-- Listado de las partes del prompt -->
+                        <ol class="reveal-up tw-mt-8 tw-max-w-[650px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-left tw-list-decimal tw-pl-6 max-md:tw-text-sm">
+                        <li class="tw-mb-4">
+                            <strong>Contexto:</strong> Define la situación o el rol que deseas que adopte la IA. 
+                            Ayuda a que entienda desde qué perspectiva debe responder.<br>
+                            <em>Ejemplo:</em> “Actúa como un profesor de informática…”
+                        </li>
+                        
+                        <li class="tw-mb-4">
+                            <strong>Audiencia:</strong> Indica para quién va dirigida la respuesta. 
+                            Esto ajusta el nivel de lenguaje y el enfoque del contenido.<br>
+                            <em>Ejemplo:</em> “Explica el tema como si fuera para estudiantes universitarios.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Instrucción clara y directa:</strong> Especifica la tarea principal que debe realizar la IA de forma breve y concreta.<br>
+                            <em>Ejemplo:</em> “Explica las ventajas del uso de IA en la educación.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Tono:</strong> Determina la actitud o estilo que debe tener la respuesta (formal, educativo, técnico, amigable, etc.).<br>
+                            <em>Ejemplo:</em> “Usa un tono académico y objetivo.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Detalles adicionales:</strong> Incluye información extra o condiciones que deben considerarse para personalizar la respuesta.<br>
+                            <em>Ejemplo:</em> “Menciona al menos tres ejemplos reales.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Formato:</strong> Indica la forma en que deseas que se presente la información (lista, resumen, tabla, ensayo, código, etc.).<br>
+                            <em>Ejemplo:</em> “Preséntalo en formato de lista numerada.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Estructura:</strong> Organiza las partes del prompt de manera lógica (inicio con contexto, luego la instrucción, detalles y formato).<br>
+                            <em>Ejemplo:</em> “Contexto → Tarea → Detalles → Formato.”
+                        </li>
+
+                        <li class="tw-mb-4">
+                            <strong>Palabras clave:</strong> Son términos específicos que guían la respuesta de la IA hacia el tema o enfoque deseado.<br>
+                            <em>Ejemplo:</em> “educación, aprendizaje, ética, IA.”
+                        </li>
+
+                        <li>
+                            <strong>Extensión:</strong> Define la longitud aproximada de la respuesta para evitar textos demasiado largos o cortos.<br>
+                            <em>Ejemplo:</em> “Haz un resumen de máximo 150 palabras.”
+                        </li>
+                        </ol>
+                    </div>
+                    </section>
+
+        <!-- Consejos y buenas prácticas -->
+            <section id="consejos"
+            class="tw-relative tw-flex tw-w-full tw-min-h-[100vh] max-lg:tw-min-h-[80vh] 
+            tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-pt-[80px]"
+>
+            <div class="tw-w-full tw-place-content-center tw-items-center tw-flex tw-flex-col tw-max-w-[900px] tw-gap-4 tw-p-4">
+                
+                <div class="purple-bg-grad reveal-up tw-absolute tw-right-[20%] tw-top-[20%] tw-h-[200px] tw-w-[200px]"></div>
+                
+                <h2 class="reveal-up tw-text-6xl max-lg:tw-text-4xl tw-text-center tw-leading-normal tw-uppercase">
+                <span class="tw-font-semibold">Consejos y Buenas Prácticas para</span><br>
+                <span class="tw-font-serif">Formular Prompts Efectivos</span>
+                </h2>
+
+                <p class="reveal-up tw-mt-8 tw-max-w-[650px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-center max-md:tw-text-sm">
+                Sigue estos consejos para crear prompts claros, útiles y que generen respuestas más precisas e informativas:
+                </p>
+
+                <!-- Lista de consejos -->
+                <ul class="reveal-up tw-mt-8 tw-max-w-[700px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-left tw-list-disc tw-pl-6 tw-space-y-4 max-md:tw-text-sm">
+                <li><strong>Sé específico:</strong> evita preguntas amplias o vagas. Cuanto más concreto seas, más precisa será la respuesta.</li>
+                <li><strong>Usa verbos de acción:</strong> comienza tus instrucciones con palabras como <em>explica, analiza, compara, resume, genera, diseña</em> o <em>crea</em>.</li>
+                <li><strong>Incluye ejemplos o referencias:</strong> mostrar un ejemplo de lo que esperas ayuda a que la IA entienda mejor el tipo de respuesta deseada.</li>
+                <li><strong>Reformula si es necesario:</strong> si la respuesta no cumple tus expectativas, ajusta el prompt agregando detalles, contexto o formato.</li>
+                <li><strong>Divide tareas complejas:</strong> si el tema es extenso, sepáralo en varios prompts más pequeños y específicos.</li>
+                <li><strong>Usa etapas o pasos:</strong> primero pide una explicación, luego solicita una mejora o una versión más desarrollada.</li>
+                <li><strong>Define el contexto y el rol:</strong> indica desde qué punto de vista o función debe responder la IA (por ejemplo, profesor, programador, investigador, asesor).</li>
+                <li><strong>Controla la extensión:</strong> pide respuestas breves o detalladas según tus necesidades. Ejemplo: “resume en 100 palabras” o “explica con ejemplos prácticos”.</li>
+                <li><strong>Solicita formato:</strong> especifica cómo quieres ver la información (tabla, lista, párrafo, esquema, etc.).</li>
+                <li><strong>Mantén un tono adecuado:</strong> pide un tono formal, educativo, técnico o conversacional, según el propósito del texto.</li>
+                <li><strong>Verifica la información:</strong> recuerda que la IA puede cometer errores; siempre contrasta los datos con fuentes confiables.</li>
+                <li><strong>Evita depender totalmente de la IA:</strong> úsala como herramienta de apoyo, no como reemplazo del pensamiento crítico.</li>
+                <li><strong>Aprende de la retroalimentación:</strong> analiza cómo responde la IA y ajusta tus prompts para obtener mejores resultados.</li>
+                <li><strong>Usa palabras clave relevantes:</strong> incluir términos técnicos o específicos mejora la precisión de las respuestas.</li>
+                <li><strong>Experimenta con diferentes estilos:</strong> cambia el enfoque del prompt (resumen, explicación paso a paso o ejemplo práctico) para descubrir nuevas formas de aprender.</li>
+                </ul>
+            </div>
+            </section>
+
+
+        <!-- Errores y malas prácticas más comunes -->
+            <section id="errores"
+            class="tw-relative tw-flex tw-w-full tw-min-h-[100vh] max-lg:tw-min-h-[80vh] 
+            tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-pt-[80px]"
+>  
+            <div class="tw-w-full tw-place-content-center tw-items-center tw-flex tw-flex-col tw-max-w-[900px] tw-gap-4 tw-p-4">
+                
+                <div class="purple-bg-grad reveal-up tw-absolute tw-right-[20%] tw-top-[20%] tw-h-[200px] tw-w-[200px]"></div>
+                
+                <h2 class="reveal-up tw-text-6xl max-lg:tw-text-4xl tw-text-center tw-leading-normal tw-uppercase">
+                <span class="tw-font-semibold">Errores y Malas Prácticas Comunes al Usar</span><br>
+                <span class="tw-font-serif">Inteligencia Artificial y Formular Prompts</span>
+                </h2>
+
+                <p class="reveal-up tw-mt-8 tw-max-w-[700px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-center max-md:tw-text-sm">
+                Evita estos errores al usar herramientas de Inteligencia Artificial o al crear prompts. Mejorar tu forma de escribirlos hará que obtengas respuestas más precisas y útiles:
+                </p>
+
+                
+  
+                <!-- Tabla de errores y malas prácticas -->
+                <table class="tw-mt-4 tw-w-full tw-max-w-4xl tw-mx-auto tw-text-left tw-border-collapse">
+                
+                <thead>
+                <tr class="tw-bg-gray-200 dark:tw-bg-gray-700">
+                    <th class="tw-px-4 tw-py-2 tw-border-b tw-border-gray-300 dark:tw-border-gray-600">Error / Mala práctica</th>
+                    <th class="tw-px-4 tw-py-2 tw-border-b tw-border-gray-300 dark:tw-border-gray-600">Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="tw-even:bg-white tw-odd:bg-gray-50 dark:tw-even:bg-gray-900 dark:tw-odd:bg-gray-800">
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Ser demasiado general o ambiguo</strong></td>
+                    <td class="tw-px-4 tw-py-3">Prompts vagos como “Explícame la IA” generan respuestas imprecisas; siempre añade contexto y objetivo.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>No definir el propósito</strong></td>
+                    <td class="tw-px-4 tw-py-3">Si no indicas para qué necesitas la respuesta (resumen, exposición, código), la IA no la adaptará correctamente.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Olvidar el contexto o el rol</strong></td>
+                    <td class="tw-px-4 tw-py-3">No indicar el rol (ej. “actúa como profesor”) limita la precisión y el tono de la respuesta.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Solicitar demasiadas cosas en un solo prompt</strong></td>
+                    <td class="tw-px-4 tw-py-3">Preguntas múltiples producen respuestas mezcladas. Divide tareas complejas en prompts separados.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>No pedir un formato específico</strong></td>
+                    <td class="tw-px-4 tw-py-3">Si no indicas formato (lista, tabla, código), la salida puede ser poco usable para tu propósito.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Confiar ciegamente en la respuesta</strong></td>
+                    <td class="tw-px-4 tw-py-3">La IA puede equivocarse o "alucinar". Verifica datos con fuentes confiables antes de utilizar la información.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Usar la IA para sustituir el aprendizaje</strong></td>
+                    <td class="tw-px-4 tw-py-3">Presentar textos generados por IA como propios o depender de ella para resolver todo afecta tu formación y puede ser plagio.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Ignorar ética y autoría</strong></td>
+                    <td class="tw-px-4 tw-py-3">No aclarar el uso de IA en trabajos académicos o no citar fuentes cuando corresponde es una práctica poco ética.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>No revisar ni editar</strong></td>
+                    <td class="tw-px-4 tw-py-3">Aceptar la respuesta tal cual puede introducir errores conceptuales o de redacción; siempre edita y contextualiza.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>No indicar tono ni nivel</strong></td>
+                    <td class="tw-px-4 tw-py-3">Sin especificar tono o nivel (básico, intermedio, técnico), la respuesta puede ser demasiado técnica o demasiado simple.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>No realizar retroalimentación al prompt</strong></td>
+                    <td class="tw-px-4 tw-py-3">Un solo intento raramente es suficiente. Pide mejoras, versiones o aclaraciones para refinar la respuesta.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Depender completamente de la IA</strong></td>
+                    <td class="tw-px-4 tw-py-3">Uso excesivo sin análisis propio puede generar dependencia tecnológica y pérdida de habilidades críticas.</td>
+                    </tr>
+
+                    <tr>
+                    <td class="tw-px-4 tw-py-3 tw-align-top"><strong>Prompts mal redactados o con faltas</strong></td>
+                    <td class="tw-px-4 tw-py-3">Errores ortográficos, lenguaje confuso o frases incompletas pueden provocar respuestas incoherentes.</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </section>
+  
+            </div>
+            </section>
+
+
+        <!-- Ejemplos de prompts-->
+        <section id="ejemplos"
+            class="tw-relative tw-flex tw-w-full tw-min-h-[100vh] max-lg:tw-min-h-[80vh] 
+            tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-pt-[80px]"
+        >  
+             <div class="tw-w-full  tw-place-content-center tw-items-center 
+                        tw-flex tw-flex-col tw-max-w-[900px] tw-gap-4 tw-p-4">
+               <div class="purple-bg-grad  reveal-up tw-absolute tw-right-[20%] tw-top-[20%] tw-h-[200px] tw-w-[200px]"
+                ></div>
+                <h2 class="reveal-up tw-text-6xl max-lg:tw-text-4xl tw-text-center tw-leading-normal tw-uppercase">
+                    
+                    <span class="tw-font-semibold">Ejemplos de prompts </span>
+                    <br>
+                </h2>
+                <!-- Ejemplos de prompts -->
+                    <section id="ejemplos" 
+                    class="tw-relative tw-flex tw-w-full tw-min-h-[100vh] max-lg:tw-min-h-[80vh] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-pt-[80px]">
+                    
+                    <div class="tw-w-full tw-max-w-[900px] tw-flex tw-flex-col tw-items-center tw-gap-6 tw-p-4">
+                        <div class="purple-bg-grad reveal-up tw-absolute tw-left-[20%] tw-top-[20%] tw-h-[200px] tw-w-[200px]"></div>
+
+                        <h2 class="reveal-up tw-text-5xl max-lg:tw-text-3xl tw-text-center tw-leading-normal tw-uppercase">
+                        <span class="tw-font-semibold">Ejemplos de Prompts</span><br>
+                        <span class="tw-font-serif">Correctos e Incorrectos</span>
+                        </h2>
+
+                        <p class="reveal-up tw-max-w-[650px] tw-text-gray-900 dark:tw-text-gray-200 tw-text-center tw-mt-6 max-md:tw-text-sm">
+                        A continuación se muestran ejemplos de cómo <strong>no</strong> debe formularse un prompt y cómo hacerlo correctamente
+                        para obtener respuestas más útiles y precisas.
+                        </p>
+
+                        <table class="reveal-up tw-mt-8 tw-w-full tw-text-left tw-border-collapse tw-rounded-xl tw-overflow-hidden">
+                        <thead>
+                            <tr class="tw-bg-gray-200 dark:tw-bg-gray-700">
+                            <th class="tw-px-4 tw-py-3 tw-border-b tw-border-gray-300 dark:tw-border-gray-600">❌ Prompt incorrecto</th>
+                            <th class="tw-px-4 tw-py-3 tw-border-b tw-border-gray-300 dark:tw-border-gray-600">✅ Prompt correcto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tw-even:bg-gray-50 dark:tw-even:bg-gray-900">
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Explícame inteligencia artificial"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Explícame qué es la inteligencia artificial como si fuera un estudiante de preparatoria, usando ejemplos sencillos."</em>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Hazme mi tarea sobre redes"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Ayúdame a entender los tipos de topologías de red. Describe sus ventajas y desventajas en una tabla comparativa."</em>
+                            </td>
+                            </tr>
+                            <tr class="tw-even:bg-gray-50 dark:tw-even:bg-gray-900">
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Escribe sobre la historia de la IA"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Resume la historia de la inteligencia artificial en menos de 200 palabras, destacando los hitos más importantes."</em>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Qué sabes de programación"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Explica qué es la programación, sus principales lenguajes y en qué casos se usa cada uno, en formato de lista."</em>
+                            </td>
+                            </tr>
+                            <tr class="tw-even:bg-gray-50 dark:tw-even:bg-gray-900">
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Cuéntame sobre los virus"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Describe qué son los virus informáticos, cómo funcionan y menciona tres ejemplos actuales con sus métodos de propagación."</em>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Haz un resumen del texto"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Resume el siguiente texto en un párrafo de 100 palabras, conservando las ideas principales y un tono académico."</em>
+                            </td>
+                            </tr>
+                            <tr class="tw-even:bg-gray-50 dark:tw-even:bg-gray-900">
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Dime algo de ciberseguridad"</em>
+                            </td>
+                            <td class="tw-px-4 tw-py-3">
+                                <em>"Explica qué es la ciberseguridad y cómo se aplica en redes empresariales, mencionando tres buenas prácticas de protección."</em>
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </section>
+
+                          
+            
+            <!-- Aqui es donde se agregará el area para probar los prompts -->
+
+                <section>
+                <div
+                    class="reveal-up  tw-relative tw-mt-8 tw-flex tw-w-full tw-place-content-center tw-place-items-center"
+                    id="dashboard-container"
+                    
+                >
+                    <div class="purple-bg-grad  reveal-up tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-[5%] tw-h-[200px] tw-w-[200px]"
+                    ></div>    
+
+                    <div
+                        class="tw-relative tw-max-w-[80%] tw-bg-white dark:tw-bg-black tw-border-[1px] dark:tw-border-[#36393c] lg:tw-w-[1024px]
+                                lg:tw-h-[650px]  tw-flex tw-shadow-xl max-lg:tw-h-[450px] max-lg:tw-w-full
+                                tw-overflow-hidden
+                                tw-min-w-[320px] md:tw-w-full tw-min-h-[450px] tw-rounded-xl tw-bg-transparent max-md:tw-max-w-full"
+                        id="dashboard"
+                    >  
+
+                        <div class="purple-bg-grad tw-max-w-[80%] reveal-up tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-[0%] lg:tw-max-w-[1000px] tw-h-full tw-w-full"
+                        ></div> 
+                        <div class="animated-border tw-w-full tw-h-full tw-p-[2px]">
+                            <div class="tw-w-full tw-h-full tw-rounded-xl tw-overflow-hidden tw-flex">
+                                <!-- sign-up pop-up -->
+                                <div class="tw-absolute tw-rounded-xl tw-text-center tw-transition-transform tw-duration-300 tw-scale-0 tw-backdrop-blur-lg tw-flex tw-flex-col tw-p-10 tw-place-items-center 
+                                        tw-gap-4 tw-w-full tw-h-full dark:tw-bg-[#000000b4] tw-bg-[#ffffff6a] firefox:tw-bg-white tw-top-0 tw-left-0 tw-z-20"
+                                        id="signup-prompt"
+                                        >
+
+                                    <h4 class="tw-mt-6 tw-text-3xl max-md:tw-text-xl">
+                                        Signup to continue your conversation
+                                    </h4>
+
+                                    <div class="tw-flex tw-gap-1 tw-place-items-center">
+                                        <div class="tw-flex tw--space-x-4">
+                                            <img class="tw-z-10 tw-w-10 tw-h-10 tw-object-cover tw-rounded-full tw-border-2 tw-border-white" src="assets/images/people/man.jpg" alt="Avatar 1">
+                                            <img class="tw-z-[4] tw-w-10 tw-h-10 tw-object-cover tw-rounded-full tw-border-2 tw-border-white" src="assets/images/people/women.jpg" alt="Avatar 2">
+                                            <img class="tw-z-[3] tw-w-10 tw-h-10 tw-object-cover tw-rounded-full tw-border-2 tw-border-white" src="assets/images/people/man2.jpg" alt="Avatar 3">
+                                            <img class="tw-z-[2] tw-w-10 tw-h-10 tw-object-cover tw-rounded-full tw-border-2 tw-border-white" src="assets/images/people/man.jpg" alt="Avatar 4">
+                                            <img class="tw-z-[1] tw-w-10 tw-h-10 tw-object-cover tw-rounded-full tw-border-2 tw-border-white" src="assets/images/people/women.jpg" alt="Avatar 5">
+                                        </div>
+                                        <p>+20,000</p>
+                                    </div>
+
+                                    <div class="tw-mt-3 tw-text-lg">
+                                        Join Ben and 20,000+ users using Pixa
+                                    </div>
+
+                                    <a href="#" class="btn">
+                                        Sign up
+                                    </a>
+
+                                </div>
+
+                                <div class="tw-min-w-[250px] max-lg:tw-hidden tw-p-2 tw-gap-2 tw-flex tw-flex-col tw-bg-gray-100 
+                                            dark:tw-bg-[#171717] tw-h-full">
+                                    <!-- <h3 class="tw-text-xl tw-uppercase">
+                                        Pixa
+                                    </h3> -->
+                                    <div class="tw-h-[30px] tw-w-fit tw-max-w-[100px]">
+                                        <img
+                                            src="./assets/logo/logo.png"
+                                            alt="logo"
+                                            class="tw-object-contain tw-opacity-80 tw-h-full tw-w-full dark:tw-invert"
+                                        />
+                                    </div>
+
+                                    <div class="tw-flex tw-mt-2 tw-gap-2 tw-flex-col">
+                                        <a href="#link-to-img-gen" 
+                                            class="tw-flex tw-rounded-sm tw-gap-2 tw-p-2 dark:hover:tw-bg-[#2d2d2ddb] hover:tw-bg-gray-200">
+                                            <i class="bi bi-image"></i>
+                                            <span>Image generator</span>
+                                        </a>
+                                        <a href="#link-to-pdf-gen" 
+                                            class="tw-flex tw-rounded-sm tw-gap-2 tw-p-2 dark:hover:tw-bg-[#2d2d2ddb] hover:tw-bg-gray-200">
+                                            <i class="bi bi-file-pdf"></i>
+                                            <span>Pdf generator</span>
+                                        </a>
+                                        <a href="#link-to-code-gen" 
+                                            class="tw-flex tw-rounded-sm tw-gap-2 tw-p-2 dark:hover:tw-bg-[#2d2d2ddb] hover:tw-bg-gray-200">
+                                            <i class="bi bi-code-square"></i>
+                                            <span>Code generator</span>
+                                        </a>
+                                        <a href="#" 
+                                            class="tw-flex tw-rounded-sm tw-group tw-gap-2 tw-p-2 dark:hover:tw-bg-[#2d2d2ddb] hover:tw-bg-gray-200">
+                                            <span>Show all</span>
+                                            <i class="bi bi-arrow-right tw-transform tw-transition-transform tw-duration-300 group-hover:tw-translate-x-1"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="tw-mt-auto tw-w-full tw-flex tw-px-6 tw-place-content-center">
+                                        <a href="#sign-up" class="btn !tw-w-full !tw-bg-transparent tw-duration-[0.3s] 
+                                                                hover:!tw-bg-black hover:!tw-text-white
+                                                                dark:hover:!tw-bg-white dark:hover:!tw-text-black
+                                                                !tw-border-[1px] !tw-border-black !tw-text-black
+                                                                dark:!tw-border-white dark:!tw-text-white
+                                                                ">
+                                            Signup
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="tw-flex tw-w-full tw-p-4 tw-bg-white dark:tw-bg-black tw-h-full tw-flex-col" id="pixa-playground">
+                                    <div class="tw-relative tw-w-full tw-flex tw-place-content-center tw-h-full">
+                                        <div class="tw-absolute tw-top-[20%] max-lg:tw-top-[30%] tw-left-1/2 tw--translate-x-1/2  tw-w-[150px] tw-h-[150px]">
+                                            <img src="./assets/logo/logo.png" class="tw-w-full tw-h-full dark:tw-invert tw-object-contain tw-opacity-20"
+                                                alt="Pixa logo">
+                                        </div>
+                                        <div class="prompt-container tw-overflow-y-auto tw-px-[5%] max-lg:tw-px-2 scrollbar max-lg:tw-max-h-[80%] tw-max-h-[550px] 
+                                                    max-lg:tw-mt-12 tw-w-full tw-h-full tw-z-10 tw-flex tw-flex-col" id="prompt-container">
+                                            <div class="tw-w-full tw-flex tw-text-center tw-flex-col tw-place-content-center">
+                                                <h2 class="tw-text-4xl max-md:tw-text-2xl max-md:tw-mt-3 tw-opacity-80">
+                                                    Try Prompts
+                                                </h2>
+                                                <div class="tw-inline tw-mt-6 max-md:tw-mt-3">
+                                                    <span id="prompts-sample" ></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <form action="" id="prompt-form" onsubmit="return false;" 
+                                        class="tw-place-content-center tw-mt-auto tw-h-[50px] tw-p-1 tw-place-items-center 
+                                                tw-justify-around tw-flex tw-gap-1 tw-bottom-2 tw-w-full tw-rounded-md tw-bg-[#f3f4f6] dark:tw-bg-[#171717]">
+                                        <div class="tw-min-w-[140px] tw-min-h-[80px] max-lg:tw-absolute tw-z-10 tw-top-1 tw-left-1/2 max-lg:tw--translate-x-1/2 
+                                                    tw-flex tw-flex-col tw-text-sm tw-gap-1 tw-place-content-center">
+                                            <div class="dropdown tw-p-2 tw-rounded-md  tw-bg-[#f3f4f6] dark:tw-bg-[#171717]" id="dropdown1">
+                                                <!-- store the value of the dropdown-->
+                                                <input type="hidden" class="dropdown-input">
+                                                <button
+                                                    type="button"
+                                                    class="dropdown-toggle tw-flex tw-gap-5"
+                                                >
+                                                    <span class="tw-flex tw-w-fit tw-gap-2 tw-place-items-center">
+                                                        <div class="tw-w-[20px] tw-h-[20px]">
+                                                            <img src="./assets/images/brand-logos/openai.svg" 
+                                                                alt="Gpt3.5" class="dropdown-select-icon dark:tw-invert">
+                                                        </div>
+                                                        <span class="dropdown-select-text">GPT 4o</span>
+                                                    </span>
+                                                    <i class="bi bi-chevron-down tw-ml-auto lg:tw-hidden"
+                                                        ></i>
+                                                    <i class="bi bi-chevron-up tw-ml-auto lg:tw-block tw-hidden"
+                                                        ></i>
+                                                </button>
+                                                <ul class="dropdown-menu tw-shadow-md tw-bottom-[50px] max-lg:tw-top-[105%] max-lg:tw-bottom-[unset]">
+                                                    <li class="tw-flex tw-gap-2 tw-place-items-center">
+                                                        <div class="tw-w-[20px] tw-h-[20px]">
+                                                            <img src="./assets/images/brand-logos/openai.svg" alt="Gpt-4o" 
+                                                                    class="dropdown-menu-icon dark:tw-invert">
+                                                        </div>
+                                                        <span class="dropdown-text">GPT 4o</span>
+                                                    </li>
+                                                    
+                                                    <li class="tw-flex tw-gap-2 tw-place-items-center">
+                                                        <div class="tw-w-[20px] tw-h-[20px]">
+                                                            <img src="./assets/images/brand-logos/googlegemini.svg" alt="Gemini" 
+                                                            class="dropdown-menu-icon dark:tw-invert">
+                                                        </div>
+                                                        <span class="dropdown-text">Gemini</span>
+                                                    </li>
+                                                    <li class="tw-flex tw-gap-2 tw-place-items-center">
+                                                        <div class="tw-w-[20px] tw-h-[20px]">
+                                                            <img src="./assets/images/brand-logos/meta.svg" alt="Llama" 
+                                                                    class="dropdown-menu-icon dark:tw-invert">
+                                                        </div>
+                                                        <span class="dropdown-text">Llama 3</span>
+                                                    </li>
+                                                    <li class="tw-flex tw-gap-2 tw-place-items-center">
+                                                        <div class="tw-w-[20px] tw-h-[20px]">
+                                                            <img src="./assets/images/brand-logos/claude.svg" alt="Perplexity" 
+                                                                class="dropdown-menu-icon dark:tw-invert">
+                                                        </div>
+                                                        <span class="dropdown-text">Claude</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <input placeholder="How to develop a saas app?" 
+                                                type="text" class="tw-p-2 !tw-outline-none tw-bg-transparent tw-border-none tw-w-full tw-placehoder-gray-500
+                                                                    dark:tw-placeholder-opacity-60 dark:tw-placeholder-gray-300 tw-max-w-[80%] tw-h-full" 
+                                                name="prompt" >
+                                        <button type="submit" class="btn !tw-bg-[#6366f1] !tw-p-2 !tw-px-3 !tw-text-white" title="submit">
+                                            <i class="bi bi-arrow-up"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<iframe 
+    src="encuesta.html" 
+    width="100%" 
+    height="800px" 
+    style="border: dashed gray; overflow: hidden;" 
+    title="Encuesta de Evaluación">
+</iframe>
+        
+        <!--Preguntas Frecuentes-->
+            <section id="faq"
+            class="tw-relative tw-flex tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-gap-[10%] tw-p-[5%] tw-px-[10%]"
+        >   
+
+
+            <h3
+                class="tw-text-4xl tw-font-medium max-md:tw-text-2xl"
+            >
+                Preguntas Frecuentes sobre el Uso de la Inteligencia Artificial y la Formulación de Prompts
+            </h3>
+            <div
+                class="tw-mt-5 tw-flex tw-min-h-[300px] tw-w-full tw-max-w-[850px] tw-flex-col tw-gap-4"
+            >
+                <div
+                    class="faq tw-w-full"
+                >
+                    <h4
+                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
+                    >
+                        <span>¿Qué es un prompt y por qué es tan importante al usar una IA?</span>
+                        <i class="bi bi-plus tw-text-xl tw-origin-center tw-duration-300 tw-transition-transform 
+                                    tw-ml-auto tw-font-semibold"></i>
+                    </h4>
+                    <div class="content max-lg:tw-text-sm">
+                        Un prompt es la instrucción o mensaje que le das a una Inteligencia Artificial para obtener una 
+                        respuesta. Es la forma en que le dices “qué quieres que haga”.
+                        La claridad y precisión del prompt determinan la calidad de la respuesta: 
+                        mientras más específico seas (indicando contexto, tarea y formato), más útil y exacta será 
+                        la información que recibas.
+                    </div>
+                </div>
+                <hr>
+                <div
+                    class="faq tw-w-full"
+                >
+                    <h4
+                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
+                    >
+                        <span>¿Cuáles son los errores más comunes al formular un prompt?</span>
+                        <i class="bi bi-plus tw-text-xl tw-origin-center tw-duration-300 tw-transition-transform 
+                                    tw-ml-auto tw-font-semibold"></i>
+                    </h4>
+                    <div class="content max-lg:tw-text-sm">
+                       <ul> Algunos errores frecuentes son:
+
+                            <li>    demasiado general (“háblame de la educación”).</li> 
+                            <li>    No indicar qué formato o tono deseas (lista, resumen, texto académico, etc.).</li>
+                            <li>    Pedir varias cosas al mismo tiempo, confundiendo al modelo.</li>
+                            <li>    No revisar ni ajustar los resultados obtenidos.</li>
+                            <li>    Para evitarlos, escribe tu prompt como si dieras instrucciones a una persona: 
+                                    claro, ordenado y con un objetivo definido.</li>
+                        </ul>    
+                    </div>
+                </div>
+                <hr>
+                <div
+                    class="faq tw-w-full"
+                >
+                    <h4
+                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
+                    >
+                        <span>¿Cómo puedo usar la IA de forma ética en mis estudios?</span>
+                        <i class="bi bi-plus tw-text-xl tw-origin-center tw-duration-300 tw-transition-transform 
+                                    tw-ml-auto tw-font-semibold"></i>
+                    </h4>
+                    <div class="content max-lg:tw-text-sm">
+                        <ul>
+                            El uso ético de la IA implica apoyarte en ella sin reemplazar tu propio aprendizaje.
+                            Algunos principios clave son:
+                                    <li>    Utiliza la IA para comprender y practicar, no solo para entregar tareas.</li>
+                                    <li>    Cita las fuentes o aclara si usaste IA en tu trabajo.</li>
+                                    <li>    No uses la IA para generar textos que presentes como propios.</li>
+                                    <li>    Reflexiona siempre sobre la información recibida: no todo lo que dice la IA es correcto.</li>
+                        </ul> 
+                    </div>
+                </div>
+                <hr>
+
+                <div
+                    class="faq tw-w-full"
+                >
+                    <h4
+                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
+                    >
+                        <span>¿Cómo puedo mejorar mis prompts para obtener mejores resultados?</span>
+                        <i class="bi bi-plus tw-text-xl tw-origin-center tw-duration-300 tw-transition-transform 
+                                    tw-ml-auto tw-font-semibold"></i>
+                    </h4>
+                    <div class="content max-lg:tw-text-sm">
+                        <ul>Sigue esta estructura básica:
+                            <li>    [Rol o contexto] + [Tarea específica] + [Detalles o condiciones] + [Formato o tono deseado]</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                
+            </div>
+            <div class="purple-bg-grad max-md:tw-hidden reveal-up tw-absolute tw-bottom-14 tw-right-[20%] 
+                                 tw-h-[150px] tw-w-[150px] tw-rounded-full"
+                ></div>
+           
+        </section>
+
+
+        <footer
+            class="tw-mt-auto tw-flex tw-flex-col tw-w-full tw-gap-4 tw-text-sm tw-pt-[5%] tw-pb-10 tw-px-[10%] 
+                    tw-text-black dark:tw-text-white max-md:tw-flex-col"
+        >
+
+            <hr class="tw-mt-8">
+            <div class="tw-mt-2 tw-flex tw-gap-2 tw-flex-col tw-text-gray-700 dark:tw-text-gray-300 tw-place-items-center 
+                    tw-text-[12px] tw-w-full tw-text-center tw-place-content-around">
+                <span>Instituto Tecnológico de Chihuahua II &#169; 2025</span>
+                <span>Aplicación para Realizar una investigación con Fines Educativos.</span>
+            </div>
+
+        </footer>
+    </body>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
+        integrity="sha512-B1lby8cGcAUU3GR+Fd809/ZxgHbfwJMp0jLTVfHiArTuUt++VqSlJpaJvhNtRf3NERaxDNmmxkdx2o+aHd4bvw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"
+        integrity="sha512-AY2+JxnBETJ0wcXnLPCcZJIJx0eimyhz3OJ55k2Jx4RtYC+XdIi2VtJQ+tP3BaTst4otlGG1TtPJ9fKrAUnRdQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js" integrity="sha512-hIlMpy2enepx9maXZF1gn0hsvPLerXoLHdb095CmRY5HG3bZfN7XPBZ14g+TUDH1aGgfLyPHmY9/zuU53smuMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./scripts/components.js"></script>
+    <script src="./index.js"></script>
+
+</html>

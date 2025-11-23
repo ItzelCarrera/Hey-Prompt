@@ -1,0 +1,187 @@
+/* ===== Estilos Encuesta Dark Mode ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --accent: #b56cff;       /* Tu morado característico */
+  --bg-page: #000000;      /* Fondo negro puro */
+  --bg-card: #121212;      /* Fondo gris muy oscuro para el contenedor */
+  --bg-input: #1e1e1e;     /* Fondo de los inputs */
+  --text-main: #e5e5e5;    /* Texto casi blanco */
+  --text-muted: #a3a3a3;   /* Texto gris para descripciones */
+  --border-color: #333333; /* Bordes sutiles */
+  
+  --font-main: 'Open Sans', sans-serif;
+  --font-title: 'Oswald', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  padding: 40px 16px;
+}
+
+main.wrap {
+  width: 100%;
+  max-width: 900px; /* Un poco más ancho para combinar con tu diseño */
+  margin: 0 auto;
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  /* Sombra sutil morada para integrarse con tu tema */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px #222; 
+}
+
+h1 {
+  font-family: var(--font-title);
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase; /* Para combinar con los títulos de tu web */
+}
+
+.lead {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* === Formulario === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.full { width: 100%; }
+
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.desc-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  margin-top: -4px;
+}
+
+/* Inputs y Textareas en modo oscuro */
+input[type="text"], textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+input[type="text"]:focus, textarea:focus {
+  border-color: var(--accent);
+  background: #252525;
+  box-shadow: 0 0 10px rgba(181, 108, 255, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Grupos de Opciones (Radio y Checkbox) */
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.radio-opt, .check-opt {
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid transparent; /* Para evitar saltos al hacer hover */
+  transition: background 0.2s;
+}
+
+.radio-opt:hover, .check-opt:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-color);
+}
+
+/* Personalización de checkboxes y radios */
+input[type="radio"], input[type="checkbox"] {
+  margin-top: 4px;
+  accent-color: var(--accent);
+  transform: scale(1.2);
+  background-color: var(--bg-input);
+}
+
+/* Botón */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 14px 24px;
+  background: var(--accent);
+  color: #fff;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(181, 108, 255, 0.3);
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  background: #c285ff;
+}
+
+.hidden { display: none !important; }
+
+/* Mensaje de gracias */
+#thanks {
+  padding: 30px;
+  border-radius: 8px;
+  background: rgba(46, 125, 50, 0.15); /* Fondo verde muy oscuro y transparente */
+  border: 1px solid #2e7d32;
+  text-align: center;
+}
+
+#thanks h3 {
+  color: #4caf50; /* Verde brillante */
+  margin-bottom: 10px;
+}
+#thanks p {
+  color: #e0e0e0;
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+  main.wrap { padding: 20px; box-shadow: none; background: transparent; }
+  h1 { font-size: 1.8rem; }
+  body { padding: 10px; }
+  /* En móvil, quizás quieras que el input resalte más */
+  input[type="text"], textarea { background: #222; }
+}
